@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body>
+
+    <%- include('../partials/header') %>
+    <br>
+    <br>
+
+    <% if(typeof feeds != 'undefined') { %>
+    <fieldset style="background-color: #eeeeee;">
+        <legend style="background-color: gray; color: white; padding: 5px 10px;">Feeds:</legend>
+        <div id="feeds">
+            <% if(typeof feeds == 'object') { %>
+            <% for(var i in feeds) { %>
+            <a href="/feed/<%= feeds[i].feedName %>"><%= feeds[i].feedName %></a> |
+            <% } %>
+            <% } else { %>
+            <span style="color: red;"><%= feeds %></span>
+            <% } %>
+        </div>
+        <br>
+        <form action="/feeds" method="post">
+            <label for="feedName">Feed Adı: </label>
+            <input type="text" name="feedName" id="feedName" autocomplete="off">
+            <input type="submit" value="Feed Oluştur">
+        </form>
+        <div>
+            <% if(typeof errorMessage != 'undefined') { %>
+            <% if(typeof errorMessage == 'object') { %>
+            <div>
+                <% for(var i in errorMessage) { %>
+                <span style="color: red;"><%= errorMessage[i].msg %></span>
+                <% } %>
+            </div>
+            <% } else { %>
+            <span style="color: red;"><%= errorMessage %></span>
+            <% } %>
+            <% } %>
+        </div>
+    </fieldset>
+    <% } %>
+
+    <br>
+    <br>
+    <br>
+    <%- include('../partials/footer') %>
+    <%- include('../partials/footerScripts') %>
+</body>
+
+</html>

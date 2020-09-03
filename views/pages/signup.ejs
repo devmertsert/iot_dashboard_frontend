@@ -1,0 +1,36 @@
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body>
+    <form action="/auth/signup" method="post">
+        <label for="name">Ad: </label>
+        <input id="name" type="text" name="name" autocomplete="off"><br>
+        <label for="surname">Soyad: </label>
+        <input id="surname" type="text" name="surname" autocomplete="off"><br>
+        <label for="email">E-Posta: </label>
+        <input id="email" type="email" name="email" autocomplete="off"><br>
+        <label for="password">Şifre: </label>
+        <input id="password" type="password" name="password"><br>
+        <input type="submit" value="Kaydol">
+    </form>
+    <div id="serverMessage">
+        <% if(typeof errorMessage != 'undefined') { %>
+        <% if(typeof errorMessage == 'object') { %>
+        <div>
+            <% for(var i in errorMessage) { %>
+            <span style="color: red;"><%= errorMessage[i].msg %></span>
+            <% } %>
+        </div>
+        <% } else { %>
+        <span style="color: red;"><%= errorMessage %></span>
+        <% } %>
+        <% } %>
+    </div>
+
+    <%- include('../partials/footerScripts') %>
+</body>
+
+</html>
